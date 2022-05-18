@@ -20,9 +20,18 @@ This template also integrates the Netapp Snapcenter software with Fsx Ontap to a
 
 - Custom RDS Instance, SnapCenter server Instance and Fsx Ontap should be able to communicate with each other (networking and security groups need to ensure the same)
 
-- S3 Bucket with packages.zip, fsxLambdaFunction.zip, SnapCenter executable file and a pem file uploaded to it.
+- S3 Bucket with packages.zip, fsxLambdaFunction.zip, SnapCenter installation file and a pem file uploaded to it.
+  
+  Note: packages.zip file can be created using the commands given below on a Linux machine:
+
   ```
-  Note: packages.zip and fsxLambdaFunction.zip can be found in the Powershell/Resources folder of this repository.
+  mkdir packages
+  cd packages
+  pip install requests -t .
+  pip install netapp-ontap -t .
+  rm -rf *dist-info
+  cd ..
+  zip -r packages.zip packages
   ```
 
 - FSx Ontap File System with NTFS-enabled SVM created along with FSx and SVM passwords set
@@ -68,19 +77,21 @@ This template also integrates the Netapp Snapcenter software with Fsx Ontap to a
 ## Procedure
 
 In order to run the automation:
+
 1. Open a new Powershell console.
 2. Clone the repository.
     ```
     git clone https://github.com/netapp-vedantsethia/aws_rds_fsx_automation.git
     ```
-3. Navigate to the desired folder
+3. Login to AWS console and upload the pre-requisites mentioned in the PowerShell script to your AWS S3 bucket.
+4. Navigate to the desired folder
     ```
     cd Powershell
     ```
 
-4. Update the variable values in ```config.ps1```.
+5. Update the variable values in ```config.ps1```.
 
-5. Run the Powershell script.
+6. Run the Powershell script.
     ```
     .\rds_fsx.ps1
     ```
