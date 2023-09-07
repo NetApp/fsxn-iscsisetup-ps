@@ -81,7 +81,7 @@ In order to run the automation:
 1. Open a new Powershell console.
 2. Clone the repository.
     ```
-    git clone https://github.com/NetApp-Automation/fsxn-iscsisetup-ps.git
+    git clone https://github.com/NetApp/fsxn-iscsisetup-ps.git
     ```
 3. Login to AWS console and upload the pre-requisites mentioned in the PowerShell script to your AWS S3 bucket.
 4. Navigate to the desired folder
